@@ -1,4 +1,10 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
+require("dotenv").config()
+
+const TESTNET_RPC = process.env.TESTNET_RPC;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -20,11 +26,11 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   solidity: "0.8.10",
   networks: {
     mumbai: {
-      url: process.env.TESTNET_RPC,
-      accounts: [process.env.PRIVATE_KEY]
+      url: TESTNET_RPC,
+      accounts: [PRIVATE_KEY]
     },
   },
   etherscan: {
-    apiKey: process.env.POLYGONSCAN_API_KEY
+    apiKey: POLYGONSCAN_API_KEY
   }
 };
